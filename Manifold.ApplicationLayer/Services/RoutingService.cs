@@ -28,11 +28,10 @@ public class RoutingService : IRoutingService
             {
                 var pipe = current.ConnectedPipes
                   .FirstOrDefault(p => p.Connects(current, next)) 
-                  ?? throw new Exception($"No pipe found between {current.Id} and {next.Id}");
+                  ?? throw new InvalidOperationException($"No pipe found between {current.Id} and {next.Id}");
 
                 valve.SwitchTo(pipe);
             }
         }
     }
-
 }

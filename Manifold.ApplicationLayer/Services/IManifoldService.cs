@@ -4,5 +4,5 @@ namespace Manifold.ApplicationLayer.Services;
 public interface IManifoldService
 {
     void FillChamber(string chamberId, ContentTypes type);
-    void EmptyChamber(string chamberId, bool hazardous);
+    void EmptyChamber(string chamberId, string wasteValveId, bool hazardous);
 }

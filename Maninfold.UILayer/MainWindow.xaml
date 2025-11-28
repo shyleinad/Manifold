@@ -1,0 +1,111 @@
+﻿<Window x:Class="Maninfold.UILayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Maninfold.UILayer.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <!-- Ensure MainViewModel exists in the specified namespace and is public -->
+        <local:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left: visualization -->
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Viewbox Stretch="Uniform" StretchDirection="Both">
+                <Canvas x:Name="canvas" Width="1000" Height="600">
+                    <!-- Pipes (lines) -->
+                    <ItemsControl ItemsSource="{Binding Pipes}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:PipeViewModel}">
+                                <Line X1="{Binding X1}" Y1="{Binding Y1}" X2="{Binding X2}" Y2="{Binding Y2}"
+                                      Stroke="{Binding Brush}" StrokeThickness="10" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Chambers (rectangles) -->
+                    <ItemsControl ItemsSource="{Binding Chambers}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:ChamberViewModel}">
+                                <StackPanel Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                                    <Rectangle Width="80" Height="50" Stroke="Black" Fill="{Binding Brush}" StrokeThickness="1"/>
+                                    <TextBlock Text="{Binding Id}" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Valves: draw small circles at node positions -->
+                    <ItemsControl ItemsSource="{Binding Valves}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:ValveViewModel}">
+                                <Ellipse Width="20" Height="20" Stroke="Black" Fill="Gray"
+                                         Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </Canvas>
+            </Viewbox>
+        </ScrollViewer>
+
+        <!-- Right: controls -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Control panel" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Chamber:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox ItemsSource="{Binding ChamberOptions}" SelectedItem="{Binding SelectedChamberId}" Width="120"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Fluid:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox ItemsSource="{Binding FluidOptions}" SelectedItem="{Binding SelectedFluid}" Width="120"/>
+            </StackPanel>
+
+            <Button Content="Fill Chamber" Command="{Binding FillCommand}" Margin="0,6,0,10" Width="150"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <CheckBox Content="Hazardous" IsChecked="{Binding Hazardous}" VerticalAlignment="Center"/>
+                <Button Content="Empty Chamber" Command="{Binding EmptyCommand}" Margin="8,0,0,0" />
+            </StackPanel>
+
+            <Separator Margin="0,10"/>
+
+            <TextBlock Text="Pipes status" FontWeight="Bold" Margin="0,6,0,6"/>
+            <ItemsControl ItemsSource="{Binding Pipes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Id}" Width="80"/>
+                            <Rectangle Width="16" Height="16" Fill="{Binding Brush}" Stroke="Black" Margin="6,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</Window>

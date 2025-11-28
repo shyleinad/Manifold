@@ -27,14 +27,15 @@ public class ManifoldService : IManifoldService
         flowService.UpdateFlow(path, type);
 
         chamber.Content = type;
-
-        Console.WriteLine($"Chamber {chamberId} filled with {type}");
     }
 
-    public void EmptyChamber(string chamberId, bool hazardous)
+    public void EmptyChamber(string chamberId, string wasteValveId, bool hazardous)
     {
         Chamber? chamber = graph.OfType<Chamber>().FirstOrDefault(c => c.Id == chamberId) 
             ?? throw new ArgumentException($"Chamber with ID {chamberId} not found.");
+
+        WasteValve? target = graph.OfType<WasteValve>().FirstOrDefault(wv => wv.Id == wasteValveId)
+            ?? throw new ArgumentException($"Waste valve with ID {wasteValveId} not found.");
 
         // Blow air in chamber
         GraphElement source = graph.OfType<SourceValve>().First(s => s.Content == ContentTypes.Air);
@@ -44,15 +45,12 @@ public class ManifoldService : IManifoldService
         flowService.UpdateFlow(path, ContentTypes.Air);
 
         // Drain chamber content
-        GraphElement target = graph.OfType<WasteValve>().First(w => w.IsHazardous == hazardous);
+        target.IsHazardous = hazardous;
 
         chamber.Content = ContentTypes.Air;
 
         path = routingService.GetPath(chamber, target);
 
         flowService.UpdateFlow(path, chamber.Content);
-
-        Console.WriteLine($"Chamber {chamberId} emptied to {(hazardous ? "Hazardous Waste Valve" : "Drain Valve")}");
-
     }
 }

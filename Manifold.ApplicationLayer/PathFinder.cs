@@ -4,6 +4,11 @@ namespace Manifold.ApplicationLayer;
 
 public class PathFinder
 {
+    protected PathFinder()
+    {
+        
+    }
+
     // Breadth-first search algorithm
     public static List<GraphElement> FindShortestPath(GraphElement start, GraphElement target)
     {
