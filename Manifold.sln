@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36429.23 d17.14
+VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manifold.DomainLayer", "Manifold.DomainLayer\Manifold.DomainLayer.csproj", "{D0C925E1-B7A5-4177-A52C-24F22811A87F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manifold.ApplicationLayer", "Manifold.ApplicationLayer\Manifold.ApplicationLayer.csproj", "{7ED7B6ED-2CDA-4453-A283-26B7AD0A2E00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manifold.InfrastructureLayer", "Manifold.InfrastructureLayer\Manifold.InfrastructureLayer.csproj", "{74B9C003-1150-46C5-B10B-A5B5D9D038AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7ED7B6ED-2CDA-4453-A283-26B7AD0A2E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ED7B6ED-2CDA-4453-A283-26B7AD0A2E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ED7B6ED-2CDA-4453-A283-26B7AD0A2E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
