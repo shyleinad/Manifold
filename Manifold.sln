@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manifold.ApplicationLayer",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manifold.InfrastructureLayer", "Manifold.InfrastructureLayer\Manifold.InfrastructureLayer.csproj", "{74B9C003-1150-46C5-B10B-A5B5D9D038AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manifold.PresentationLayer", "Manifold.PresentationLayer\Manifold.PresentationLayer.csproj", "{69234450-C28C-45E1-8868-15C13827D504}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74B9C003-1150-46C5-B10B-A5B5D9D038AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69234450-C28C-45E1-8868-15C13827D504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69234450-C28C-45E1-8868-15C13827D504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69234450-C28C-45E1-8868-15C13827D504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69234450-C28C-45E1-8868-15C13827D504}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
