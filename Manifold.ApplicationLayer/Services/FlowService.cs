@@ -12,7 +12,7 @@ public class FlowService : IFlowService
             GraphElement to = path[i + 1];
 
             Pipe? pipe = path[i].ConnectedPipes.FirstOrDefault(p => p.Connects(from, to)) 
-                ?? throw new NullReferenceException($"No pipe found between {from.Id} and {to.Id}");
+                ?? throw new ArgumentException($"No pipe found between {from.Id} and {to.Id}");
 
             pipe.Content = content;
         }
